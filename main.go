@@ -11,6 +11,8 @@ import (
 	"path/filepath"
 	"strings"
 	"time"
+
+	"golang.org/x/text/unicode/norm"
 )
 
 type SRUResponse struct {
@@ -152,7 +154,7 @@ func searchTGLSRUDeepParse(normNumber string) []DownloadableDocument {
 			}
 		}
 
-		fmt.Printf("  Title: %s\n", title)
+		fmt.Printf("  Title: %s\n", sanitizeTitle(title))
 		if len(additionalInfo) > 0 {
 			fmt.Printf("  Details: %s\n", strings.Join(additionalInfo, ", "))
 		}
@@ -338,6 +340,12 @@ func downloadZIP(downloadable DownloadableDocument, dir string) (string, error) 
 	return fileName, nil
 }
 
+func sanitizeTitle(rawTitle string) string {
+	// norm.NFC.String() konvertiert den zerlegten NFD-String
+	// in den standardisierten, sauber komponierten NFC-String.
+	return norm.NFC.String(rawTitle)
+}
+
 func main() {
 	// Example document ID. We want TGL 32565.
 	tglId := "32565"
@@ -346,7 +354,7 @@ func main() {
 	os.Mkdir(tglId, 0755)
 	// Download all artifacts
 	for _, document := range documents {
-		fmt.Printf("Processing: \"%v\", Title =\"%v\"\n", document.url, document.title)
+		fmt.Printf("Processing: \"%v\", Title =\"%v\"\n", document.url, sanitizeTitle(document.title))
 		artifactFileName, err := downloadZIP(document, tglId)
 		if err != nil {
 			fmt.Println(err)

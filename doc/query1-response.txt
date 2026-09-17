@@ -1,0 +1,578 @@
+Query API with URL:
+https://services.dnb.de/sru/dnb?maximumRecords=5&operation=searchRetrieve&query=tit%3D%22TGL+32565%22&recordSchema=MARC21-xml&version=1.1
+
+200
+-1
+text/xml;charset=UTF-8
+Raw bytes: <?xml version="1.0" encoding="UTF-8"?>
+<searchRetrieveResponse xmlns="http://www.loc.gov/zing/srw/"><version>1.1</version><numberOfRecords>4</numberOfRecords><records><record><recordSchema>MARC21-xml</recordSchema><recordPacking>xml</recordPacking><recordData><record xmlns="http://www.loc.gov/MARC21/slim" type="Bibliographic">
+    <leader>00000nam a2200000 c 4500</leader>
+    <controlfield tag="001">1263650953</controlfield>
+    <controlfield tag="003">DE-101</controlfield>
+    <controlfield tag="005">20250408213746.0</controlfield>
+    <controlfield tag="007">cr||||||||||||</controlfield>
+    <controlfield tag="008">220727r20181982gw |||||o|||| 00||||ger  </controlfield>
+    <datafield tag="015" ind1=" " ind2=" ">
+      <subfield code="a">22,O11</subfield>
+      <subfield code="2">dnb</subfield>
+    </datafield>
+    <datafield tag="016" ind1="7" ind2=" ">
+      <subfield code="2">DE-101</subfield>
+      <subfield code="a">1263650953</subfield>
+    </datafield>
+    <datafield tag="024" ind1="7" ind2=" ">
+      <subfield code="2">urn</subfield>
+      <subfield code="a">urn:nbn:de:101:1-2022072702462487314192</subfield>
+    </datafield>
+    <datafield tag="032" ind1=" " ind2=" ">
+      <subfield code="a">1162284072_1982-32565-01</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(DE-599)DNB1263650953</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)1576874376</subfield>
+    </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="a">1140</subfield>
+      <subfield code="b">ger</subfield>
+      <subfield code="c">DE-101</subfield>
+      <subfield code="d">9999</subfield>
+    </datafield>
+    <datafield tag="041" ind1=" " ind2=" ">
+      <subfield code="8">1\p</subfield>
+      <subfield code="a">ger</subfield>
+    </datafield>
+    <datafield tag="044" ind1=" " ind2=" ">
+      <subfield code="c">XA-DE</subfield>
+    </datafield>
+    <datafield tag="130" ind1="0" ind2=" ">
+      <subfield code="a">TGL 32565</subfield>
+      <subfield code="n">01</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="0">
+      <subfield code="a">TGL 32565/01, Wägestücke mit einer Nennmasse bis 50 kg - Technische Forderungen</subfield>
+    </datafield>
+    <datafield tag="246" ind1="3" ind2=" ">
+      <subfield code="a">Technische Normen, Gütevorschriften und Lieferbedingungen 32565/01</subfield>
+    </datafield>
+    <datafield tag="246" ind1="3" ind2=" ">
+      <subfield code="a">DDR-Standard</subfield>
+    </datafield>
+    <datafield tag="264" ind1=" " ind2="1">
+      <subfield code="a">Frankfurt am Main</subfield>
+      <subfield code="a">Leipzig</subfield>
+      <subfield code="b">Deutsche Nationalbibliothek</subfield>
+      <subfield code="c">2018</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">1 Online-Ressource (13 Seiten)</subfield>
+    </datafield>
+    <datafield tag="336" ind1=" " ind2=" ">
+      <subfield code="a">Text</subfield>
+      <subfield code="b">txt</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>
+    <datafield tag="337" ind1=" " ind2=" ">
+      <subfield code="a">Computermedien</subfield>
+      <subfield code="b">c</subfield>
+      <subfield code="2">rdamedia</subfield>
+    </datafield>
+    <datafield tag="338" ind1=" " ind2=" ">
+      <subfield code="a">Online-Ressource</subfield>
+      <subfield code="b">cr</subfield>
+      <subfield code="2">rdacarrier</subfield>
+    </datafield>
+    <datafield tag="506" ind1="0" ind2=" ">
+      <subfield code="a">Open Access</subfield>
+      <subfield code="f">Unrestricted online access</subfield>
+      <subfield code="g">20221006</subfield>
+      <subfield code="q">DNB</subfield>
+      <subfield code="u">http://purl.org/coar/access_right/c_abf2</subfield>
+      <subfield code="2">star</subfield>
+    </datafield>
+    <datafield tag="540" ind1=" " ind2=" ">
+      <subfield code="a">Creative Commons - Public Domain Mark 1.0</subfield>
+      <subfield code="f">PD 1.0</subfield>
+      <subfield code="g">20221006</subfield>
+      <subfield code="q">DNB</subfield>
+      <subfield code="u">https://creativecommons.org/publicdomain/mark/1.0/deed.de</subfield>
+      <subfield code="2">cc</subfield>
+    </datafield>
+    <datafield tag="583" ind1="1" ind2=" ">
+      <subfield code="a">Archivierung/Langzeitarchivierung gewährleistet</subfield>
+      <subfield code="5">DE-101</subfield>
+      <subfield code="2">pdager</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="0">(DE-588)4419668-4</subfield>
+      <subfield code="0">https://d-nb.info/gnd/4419668-4</subfield>
+      <subfield code="0">(DE-101)94827171X</subfield>
+      <subfield code="a">Norm</subfield>
+      <subfield code="2">gnd-content</subfield>
+    </datafield>
+    <datafield tag="850" ind1=" " ind2=" ">
+      <subfield code="a">DE-101a</subfield>
+      <subfield code="a">DE-101b</subfield>
+    </datafield>
+    <datafield tag="856" ind1="4" ind2="0">
+      <subfield code="u">https://nbn-resolving.org/urn:nbn:de:101:1-2022072702462487314192</subfield>
+      <subfield code="x">Resolving-System</subfield>
+    </datafield>
+    <datafield tag="856" ind1=" " ind2="0">
+      <subfield code="u">https://d-nb.info/1263650953/34</subfield>
+      <subfield code="x">Langzeitarchivierung Nationalbibliothek</subfield>
+    </datafield>
+    <datafield tag="883" ind1="1" ind2=" ">
+      <subfield code="8">1\p</subfield>
+      <subfield code="a">npi</subfield>
+      <subfield code="d">20220727</subfield>
+      <subfield code="q">DE-101</subfield>
+      <subfield code="u">https://d-nb.info/provenance/plan#npi</subfield>
+    </datafield>
+    <datafield tag="925" ind1="r" ind2=" ">
+      <subfield code="a">ro</subfield>
+    </datafield>
+    <datafield tag="925" ind1="d" ind2=" ">
+      <subfield code="a">d003</subfield>
+      <subfield code="b">2d010</subfield>
+    </datafield>
+    <datafield tag="927" ind1=" " ind2=" ">
+      <subfield code="a">700579843</subfield>
+    </datafield>
+  </record></recordData><recordPosition>1</recordPosition></record><record><recordSchema>MARC21-xml</recordSchema><recordPacking>xml</recordPacking><recordData><record xmlns="http://www.loc.gov/MARC21/slim" type="Bibliographic">
+    <leader>00000nam a2200000 c 4500</leader>
+    <controlfield tag="001">1263650945</controlfield>
+    <controlfield tag="003">DE-101</controlfield>
+    <controlfield tag="005">20250408213746.0</controlfield>
+    <controlfield tag="007">cr||||||||||||</controlfield>
+    <controlfield tag="008">220727r20181975gw |||||o|||| 00||||ger  </controlfield>
+    <datafield tag="015" ind1=" " ind2=" ">
+      <subfield code="a">22,O11</subfield>
+      <subfield code="2">dnb</subfield>
+    </datafield>
+    <datafield tag="016" ind1="7" ind2=" ">
+      <subfield code="2">DE-101</subfield>
+      <subfield code="a">1263650945</subfield>
+    </datafield>
+    <datafield tag="024" ind1="7" ind2=" ">
+      <subfield code="2">urn</subfield>
+      <subfield code="a">urn:nbn:de:101:1-2022072702461859854842</subfield>
+    </datafield>
+    <datafield tag="032" ind1=" " ind2=" ">
+      <subfield code="a">1162284072_1975-32565-01</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(DE-599)DNB1263650945</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)1576472721</subfield>
+    </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="a">1140</subfield>
+      <subfield code="b">ger</subfield>
+      <subfield code="c">DE-101</subfield>
+      <subfield code="d">9999</subfield>
+    </datafield>
+    <datafield tag="041" ind1=" " ind2=" ">
+      <subfield code="8">1\p</subfield>
+      <subfield code="a">ger</subfield>
+    </datafield>
+    <datafield tag="044" ind1=" " ind2=" ">
+      <subfield code="c">XA-DE</subfield>
+    </datafield>
+    <datafield tag="130" ind1="0" ind2=" ">
+      <subfield code="a">TGL 32565</subfield>
+      <subfield code="n">01</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="0">
+      <subfield code="a">TGL 32565/01, Wägestücke mit einer Nennmasse bis 50 kg - Technische Forderungen</subfield>
+    </datafield>
+    <datafield tag="246" ind1="3" ind2=" ">
+      <subfield code="a">Technische Normen, Gütevorschriften und Lieferbedingungen 32565/01</subfield>
+    </datafield>
+    <datafield tag="246" ind1="3" ind2=" ">
+      <subfield code="a">DDR-Standard</subfield>
+    </datafield>
+    <datafield tag="264" ind1=" " ind2="1">
+      <subfield code="a">Frankfurt am Main</subfield>
+      <subfield code="a">Leipzig</subfield>
+      <subfield code="b">Deutsche Nationalbibliothek</subfield>
+      <subfield code="c">2018</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">1 Online-Ressource (25 Seiten)</subfield>
+    </datafield>
+    <datafield tag="336" ind1=" " ind2=" ">
+      <subfield code="a">Text</subfield>
+      <subfield code="b">txt</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>
+    <datafield tag="337" ind1=" " ind2=" ">
+      <subfield code="a">Computermedien</subfield>
+      <subfield code="b">c</subfield>
+      <subfield code="2">rdamedia</subfield>
+    </datafield>
+    <datafield tag="338" ind1=" " ind2=" ">
+      <subfield code="a">Online-Ressource</subfield>
+      <subfield code="b">cr</subfield>
+      <subfield code="2">rdacarrier</subfield>
+    </datafield>
+    <datafield tag="506" ind1="0" ind2=" ">
+      <subfield code="a">Open Access</subfield>
+      <subfield code="f">Unrestricted online access</subfield>
+      <subfield code="g">20221006</subfield>
+      <subfield code="q">DNB</subfield>
+      <subfield code="u">http://purl.org/coar/access_right/c_abf2</subfield>
+      <subfield code="2">star</subfield>
+    </datafield>
+    <datafield tag="540" ind1=" " ind2=" ">
+      <subfield code="a">Creative Commons - Public Domain Mark 1.0</subfield>
+      <subfield code="f">PD 1.0</subfield>
+      <subfield code="g">20221006</subfield>
+      <subfield code="q">DNB</subfield>
+      <subfield code="u">https://creativecommons.org/publicdomain/mark/1.0/deed.de</subfield>
+      <subfield code="2">cc</subfield>
+    </datafield>
+    <datafield tag="583" ind1="1" ind2=" ">
+      <subfield code="a">Archivierung/Langzeitarchivierung gewährleistet</subfield>
+      <subfield code="5">DE-101</subfield>
+      <subfield code="2">pdager</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="0">(DE-588)4419668-4</subfield>
+      <subfield code="0">https://d-nb.info/gnd/4419668-4</subfield>
+      <subfield code="0">(DE-101)94827171X</subfield>
+      <subfield code="a">Norm</subfield>
+      <subfield code="2">gnd-content</subfield>
+    </datafield>
+    <datafield tag="850" ind1=" " ind2=" ">
+      <subfield code="a">DE-101a</subfield>
+      <subfield code="a">DE-101b</subfield>
+    </datafield>
+    <datafield tag="856" ind1="4" ind2="0">
+      <subfield code="u">https://nbn-resolving.org/urn:nbn:de:101:1-2022072702461859854842</subfield>
+      <subfield code="x">Resolving-System</subfield>
+    </datafield>
+    <datafield tag="856" ind1=" " ind2="0">
+      <subfield code="u">https://d-nb.info/1263650945/34</subfield>
+      <subfield code="x">Langzeitarchivierung Nationalbibliothek</subfield>
+    </datafield>
+    <datafield tag="883" ind1="1" ind2=" ">
+      <subfield code="8">1\p</subfield>
+      <subfield code="a">npi</subfield>
+      <subfield code="d">20220727</subfield>
+      <subfield code="q">DE-101</subfield>
+      <subfield code="u">https://d-nb.info/provenance/plan#npi</subfield>
+    </datafield>
+    <datafield tag="925" ind1="r" ind2=" ">
+      <subfield code="a">ro</subfield>
+    </datafield>
+    <datafield tag="925" ind1="d" ind2=" ">
+      <subfield code="a">d003</subfield>
+      <subfield code="b">2d010</subfield>
+    </datafield>
+    <datafield tag="927" ind1=" " ind2=" ">
+      <subfield code="a">700579843</subfield>
+    </datafield>
+  </record></recordData><recordPosition>2</recordPosition></record><record><recordSchema>MARC21-xml</recordSchema><recordPacking>xml</recordPacking><recordData><record xmlns="http://www.loc.gov/MARC21/slim" type="Bibliographic">
+    <leader>00000nam a2200000 c 4500</leader>
+    <controlfield tag="001">1263650961</controlfield>
+    <controlfield tag="003">DE-101</controlfield>
+    <controlfield tag="005">20250408213747.0</controlfield>
+    <controlfield tag="007">cr||||||||||||</controlfield>
+    <controlfield tag="008">220727r20181975gw |||||o|||| 00||||ger  </controlfield>
+    <datafield tag="015" ind1=" " ind2=" ">
+      <subfield code="a">22,O11</subfield>
+      <subfield code="2">dnb</subfield>
+    </datafield>
+    <datafield tag="016" ind1="7" ind2=" ">
+      <subfield code="2">DE-101</subfield>
+      <subfield code="a">1263650961</subfield>
+    </datafield>
+    <datafield tag="024" ind1="7" ind2=" ">
+      <subfield code="2">urn</subfield>
+      <subfield code="a">urn:nbn:de:101:1-2022072702462993395705</subfield>
+    </datafield>
+    <datafield tag="032" ind1=" " ind2=" ">
+      <subfield code="a">1162284072_1975-32565-02</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(DE-599)DNB1263650961</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)1576521603</subfield>
+    </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="a">1140</subfield>
+      <subfield code="b">ger</subfield>
+      <subfield code="c">DE-101</subfield>
+      <subfield code="d">9999</subfield>
+    </datafield>
+    <datafield tag="041" ind1=" " ind2=" ">
+      <subfield code="8">1\p</subfield>
+      <subfield code="a">ger</subfield>
+    </datafield>
+    <datafield tag="044" ind1=" " ind2=" ">
+      <subfield code="c">XA-DE</subfield>
+    </datafield>
+    <datafield tag="130" ind1="0" ind2=" ">
+      <subfield code="a">TGL 32565</subfield>
+      <subfield code="n">02</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="0">
+      <subfield code="a">TGL 32565/02, Wägestücke mit einer Nennmasse bis 50 kg - Prüfung</subfield>
+    </datafield>
+    <datafield tag="246" ind1="3" ind2=" ">
+      <subfield code="a">Technische Normen, Gütevorschriften und Lieferbedingungen 32565/02</subfield>
+    </datafield>
+    <datafield tag="246" ind1="3" ind2=" ">
+      <subfield code="a">DDR-Standard</subfield>
+    </datafield>
+    <datafield tag="264" ind1=" " ind2="1">
+      <subfield code="a">Frankfurt am Main</subfield>
+      <subfield code="a">Leipzig</subfield>
+      <subfield code="b">Deutsche Nationalbibliothek</subfield>
+      <subfield code="c">2018</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">1 Online-Ressource (13 Seiten)</subfield>
+    </datafield>
+    <datafield tag="336" ind1=" " ind2=" ">
+      <subfield code="a">Text</subfield>
+      <subfield code="b">txt</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>
+    <datafield tag="337" ind1=" " ind2=" ">
+      <subfield code="a">Computermedien</subfield>
+      <subfield code="b">c</subfield>
+      <subfield code="2">rdamedia</subfield>
+    </datafield>
+    <datafield tag="338" ind1=" " ind2=" ">
+      <subfield code="a">Online-Ressource</subfield>
+      <subfield code="b">cr</subfield>
+      <subfield code="2">rdacarrier</subfield>
+    </datafield>
+    <datafield tag="506" ind1="0" ind2=" ">
+      <subfield code="a">Open Access</subfield>
+      <subfield code="f">Unrestricted online access</subfield>
+      <subfield code="g">20221006</subfield>
+      <subfield code="q">DNB</subfield>
+      <subfield code="u">http://purl.org/coar/access_right/c_abf2</subfield>
+      <subfield code="2">star</subfield>
+    </datafield>
+    <datafield tag="540" ind1=" " ind2=" ">
+      <subfield code="a">Creative Commons - Public Domain Mark 1.0</subfield>
+      <subfield code="f">PD 1.0</subfield>
+      <subfield code="g">20221006</subfield>
+      <subfield code="q">DNB</subfield>
+      <subfield code="u">https://creativecommons.org/publicdomain/mark/1.0/deed.de</subfield>
+      <subfield code="2">cc</subfield>
+    </datafield>
+    <datafield tag="583" ind1="1" ind2=" ">
+      <subfield code="a">Archivierung/Langzeitarchivierung gewährleistet</subfield>
+      <subfield code="5">DE-101</subfield>
+      <subfield code="2">pdager</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="0">(DE-588)4419668-4</subfield>
+      <subfield code="0">https://d-nb.info/gnd/4419668-4</subfield>
+      <subfield code="0">(DE-101)94827171X</subfield>
+      <subfield code="a">Norm</subfield>
+      <subfield code="2">gnd-content</subfield>
+    </datafield>
+    <datafield tag="850" ind1=" " ind2=" ">
+      <subfield code="a">DE-101a</subfield>
+      <subfield code="a">DE-101b</subfield>
+    </datafield>
+    <datafield tag="856" ind1="4" ind2="0">
+      <subfield code="u">https://nbn-resolving.org/urn:nbn:de:101:1-2022072702462993395705</subfield>
+      <subfield code="x">Resolving-System</subfield>
+    </datafield>
+    <datafield tag="856" ind1=" " ind2="0">
+      <subfield code="u">https://d-nb.info/1263650961/34</subfield>
+      <subfield code="x">Langzeitarchivierung Nationalbibliothek</subfield>
+    </datafield>
+    <datafield tag="883" ind1="1" ind2=" ">
+      <subfield code="8">1\p</subfield>
+      <subfield code="a">npi</subfield>
+      <subfield code="d">20220727</subfield>
+      <subfield code="q">DE-101</subfield>
+      <subfield code="u">https://d-nb.info/provenance/plan#npi</subfield>
+    </datafield>
+    <datafield tag="925" ind1="r" ind2=" ">
+      <subfield code="a">ro</subfield>
+    </datafield>
+    <datafield tag="925" ind1="d" ind2=" ">
+      <subfield code="a">d003</subfield>
+      <subfield code="b">2d010</subfield>
+    </datafield>
+    <datafield tag="927" ind1=" " ind2=" ">
+      <subfield code="a">700579843</subfield>
+    </datafield>
+  </record></recordData><recordPosition>3</recordPosition></record><record><recordSchema>MARC21-xml</recordSchema><recordPacking>xml</recordPacking><recordData><record xmlns="http://www.loc.gov/MARC21/slim" type="Bibliographic">
+    <leader>00000nam a2200000 c 4500</leader>
+    <controlfield tag="001">126365097X</controlfield>
+    <controlfield tag="003">DE-101</controlfield>
+    <controlfield tag="005">20250408213747.0</controlfield>
+    <controlfield tag="007">cr||||||||||||</controlfield>
+    <controlfield tag="008">220727r20181982gw |||||o|||| 00||||ger  </controlfield>
+    <datafield tag="015" ind1=" " ind2=" ">
+      <subfield code="a">22,O11</subfield>
+      <subfield code="2">dnb</subfield>
+    </datafield>
+    <datafield tag="016" ind1="7" ind2=" ">
+      <subfield code="2">DE-101</subfield>
+      <subfield code="a">126365097X</subfield>
+    </datafield>
+    <datafield tag="024" ind1="7" ind2=" ">
+      <subfield code="2">urn</subfield>
+      <subfield code="a">urn:nbn:de:101:1-2022072702463395241672</subfield>
+    </datafield>
+    <datafield tag="032" ind1=" " ind2=" ">
+      <subfield code="a">1162284072_1982-32565-02</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(DE-599)DNB126365097X</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)1576319337</subfield>
+    </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="a">1140</subfield>
+      <subfield code="b">ger</subfield>
+      <subfield code="c">DE-101</subfield>
+      <subfield code="d">9999</subfield>
+    </datafield>
+    <datafield tag="041" ind1=" " ind2=" ">
+      <subfield code="8">1\p</subfield>
+      <subfield code="a">ger</subfield>
+    </datafield>
+    <datafield tag="044" ind1=" " ind2=" ">
+      <subfield code="c">XA-DE</subfield>
+    </datafield>
+    <datafield tag="130" ind1="0" ind2=" ">
+      <subfield code="a">TGL 32565</subfield>
+      <subfield code="n">02</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="0">
+      <subfield code="a">TGL 32565/02, Wägestücke mit einer Nennmasse bis 50 kg - Prüfung</subfield>
+    </datafield>
+    <datafield tag="246" ind1="3" ind2=" ">
+      <subfield code="a">Technische Normen, Gütevorschriften und Lieferbedingungen 32565/02</subfield>
+    </datafield>
+    <datafield tag="246" ind1="3" ind2=" ">
+      <subfield code="a">DDR-Standard</subfield>
+    </datafield>
+    <datafield tag="264" ind1=" " ind2="1">
+      <subfield code="a">Frankfurt am Main</subfield>
+      <subfield code="a">Leipzig</subfield>
+      <subfield code="b">Deutsche Nationalbibliothek</subfield>
+      <subfield code="c">2018</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">1 Online-Ressource (9 Seiten)</subfield>
+    </datafield>
+    <datafield tag="336" ind1=" " ind2=" ">
+      <subfield code="a">Text</subfield>
+      <subfield code="b">txt</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>
+    <datafield tag="337" ind1=" " ind2=" ">
+      <subfield code="a">Computermedien</subfield>
+      <subfield code="b">c</subfield>
+      <subfield code="2">rdamedia</subfield>
+    </datafield>
+    <datafield tag="338" ind1=" " ind2=" ">
+      <subfield code="a">Online-Ressource</subfield>
+      <subfield code="b">cr</subfield>
+      <subfield code="2">rdacarrier</subfield>
+    </datafield>
+    <datafield tag="506" ind1="0" ind2=" ">
+      <subfield code="a">Open Access</subfield>
+      <subfield code="f">Unrestricted online access</subfield>
+      <subfield code="g">20221006</subfield>
+      <subfield code="q">DNB</subfield>
+      <subfield code="u">http://purl.org/coar/access_right/c_abf2</subfield>
+      <subfield code="2">star</subfield>
+    </datafield>
+    <datafield tag="540" ind1=" " ind2=" ">
+      <subfield code="a">Creative Commons - Public Domain Mark 1.0</subfield>
+      <subfield code="f">PD 1.0</subfield>
+      <subfield code="g">20221006</subfield>
+      <subfield code="q">DNB</subfield>
+      <subfield code="u">https://creativecommons.org/publicdomain/mark/1.0/deed.de</subfield>
+      <subfield code="2">cc</subfield>
+    </datafield>
+    <datafield tag="583" ind1="1" ind2=" ">
+      <subfield code="a">Archivierung/Langzeitarchivierung gewährleistet</subfield>
+      <subfield code="5">DE-101</subfield>
+      <subfield code="2">pdager</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="0">(DE-588)4419668-4</subfield>
+      <subfield code="0">https://d-nb.info/gnd/4419668-4</subfield>
+      <subfield code="0">(DE-101)94827171X</subfield>
+      <subfield code="a">Norm</subfield>
+      <subfield code="2">gnd-content</subfield>
+    </datafield>
+    <datafield tag="850" ind1=" " ind2=" ">
+      <subfield code="a">DE-101a</subfield>
+      <subfield code="a">DE-101b</subfield>
+    </datafield>
+    <datafield tag="856" ind1="4" ind2="0">
+      <subfield code="u">https://nbn-resolving.org/urn:nbn:de:101:1-2022072702463395241672</subfield>
+      <subfield code="x">Resolving-System</subfield>
+    </datafield>
+    <datafield tag="856" ind1=" " ind2="0">
+      <subfield code="u">https://d-nb.info/126365097X/34</subfield>
+      <subfield code="x">Langzeitarchivierung Nationalbibliothek</subfield>
+    </datafield>
+    <datafield tag="883" ind1="1" ind2=" ">
+      <subfield code="8">1\p</subfield>
+      <subfield code="a">npi</subfield>
+      <subfield code="d">20220727</subfield>
+      <subfield code="q">DE-101</subfield>
+      <subfield code="u">https://d-nb.info/provenance/plan#npi</subfield>
+    </datafield>
+    <datafield tag="925" ind1="r" ind2=" ">
+      <subfield code="a">ro</subfield>
+    </datafield>
+    <datafield tag="925" ind1="d" ind2=" ">
+      <subfield code="a">d003</subfield>
+      <subfield code="b">2d010</subfield>
+    </datafield>
+    <datafield tag="927" ind1=" " ind2=" ">
+      <subfield code="a">700579843</subfield>
+    </datafield>
+  </record></recordData><recordPosition>4</recordPosition></record></records><echoedSearchRetrieveRequest><version>1.1</version><query>tit="TGL 32565"</query><xQuery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/><maximumRecords>5</maximumRecords><recordSchema>MARC21-xml</recordSchema></echoedSearchRetrieveRequest></searchRetrieveResponse>
+🎉 4 records in XML response.
+
+--- [data set 1] ---
+  Title: TGL 32565/01, Wägestücke mit einer Nennmasse bis 50 kg - Technische Forderungen
+  Details: Year: 2018
+  🔗 Links found:
+    -> https://nbn-resolving.org/urn:nbn:de:101:1-2022072702462487314192
+    -> https://d-nb.info/1263650953/34
+
+--- [data set 2] ---
+  Title: TGL 32565/01, Wägestücke mit einer Nennmasse bis 50 kg - Technische Forderungen
+  Details: Year: 2018
+  🔗 Links found:
+    -> https://nbn-resolving.org/urn:nbn:de:101:1-2022072702461859854842
+    -> https://d-nb.info/1263650945/34
+
+--- [data set 3] ---
+  Title: TGL 32565/02, Wägestücke mit einer Nennmasse bis 50 kg - Prüfung
+  Details: Year: 2018
+  🔗 Links found:
+    -> https://nbn-resolving.org/urn:nbn:de:101:1-2022072702462993395705
+    -> https://d-nb.info/1263650961/34
+
+--- [data set 4] ---
+  Title: TGL 32565/02, Wägestücke mit einer Nennmasse bis 50 kg - Prüfung
+  Details: Year: 2018
+  🔗 Links found:
+    -> https://nbn-resolving.org/urn:nbn:de:101:1-2022072702463395241672
+    -> https://d-nb.info/126365097X/34
+

@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>DNB Bookviewer</title>
+<link rel="stylesheet" type="text/css" href="/bookviewer/static/css/layout_2col_73.css" />
+<link rel="stylesheet" type="text/css" href="/bookviewer/static/css/webservice.css" />
+<link rel="stylesheet" type="text/css" href="/bookviewer/static/css/dnb.css" />
+<link rel="stylesheet" type="text/css" href="/bookviewer/static/css/style.css" />
+<style type="text/css">
+    html {
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+    }
+    body {
+        height: 96%;
+        margin: 1%;
+    }
+    div#navigation > div + div {
+        margin-top: 16px;
+    }
+</style>    <link rel="stylesheet" type="text/css" href="/bookviewer/static/BookReader/BookReader.css"/>    
+    <script type="text/javascript" src="/bookviewer/static/js/jquery-1.5.1.min.js"></script>
+    <script type="text/javascript" src="/bookviewer/static/js/jquery-ui-1.8.10.custom.min.js"></script>
+    <script type="text/javascript" src="/bookviewer/static/js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="/bookviewer/static/BookReader/BookReader.js"></script>    
+    <script type="text/javascript" src="/bookviewer/static/BookReader/dragscrollable.js"></script>
+    
+    <style type="text/css">
+    
+    #BookReader {
+        border:1px solid rgb(158, 173, 214);
+        position:absolute;
+        font-family: arial, sans-serif;
+    }
+    #BRtoolbar {
+        height:25px;
+        padding: 4px 6px 6px;
+        width:99%;
+        background-color: #ffffff;
+        overflow: hidden;
+    }
+    
+    
+    #BRtoolbar .label {
+        font-size: 0.9em;
+    }
+    
+    #BRcontainer {
+        /*height:95%;*/
+        top:25px;
+        bottom:0px;
+        width:100%;
+        overflow-x:auto;
+        overflow-y:scroll;    
+        /*text-align: center;*/
+        background-color: #FCFCFC;
+        position:absolute;
+    }
+    
+    #BRpageview {
+        background-color: #FCFCFC;
+    }
+    
+    .BRpagediv1up {
+        background-color: #FFFFEE;
+        overflow:hidden;
+        border-right: 2px solid #717171;
+        border-bottom: 2px solid #717171;
+        border-left: 1px solid #909090;
+        border-top: 1px solid #909090;
+        cursor: move;
+    }
+    
+    .BRpagedivthumb {
+        background-color: #FFFFEE;
+        overflow:hidden;
+        border: 1px solid #909090;
+    }
+    
+    .BRpagedivthumb a {
+        border: 0;
+    }
+    
+    .BRpagedivthumb img {
+        border: 0;
+    }
+    
+    /* Must come after .BRpagedivthumb rules in order to override them */
+    .BRpagedivthumb_highlight {
+        background-color: #FFFFEE;
+        overflow:hidden;
+        border: 1px solid #000000;
+    }
+    
+    .BRpagediv2up {
+        background-color: rgb(234, 226, 205);
+        overflow:hidden;
+    }
+    
+    #BRbookcover {
+        border: 1px solid rgb(68, 25, 17);
+        background-color: #663929;
+        -moz-border-radius: 6px;
+        -moz-box-shadow: 3px 3px 8px #222;
+        -webkit-border-radius: 6px;
+        -webkit-box-shadow: 2px 2px 8px #222;
+    }
+    
+    .BRpageimage {
+        background-color: rgb(234, 226, 205);
+    }
+    
+    .BRleafEdgeR {
+        border-style: solid solid solid none;
+        border-color: rgb(51, 51, 34);
+        border-width: 1px 1px 1px 0px;
+        background: transparent url(/bookviewer/static/BookReader/images/right_edges.png) repeat scroll 0% 0%;
+        position: absolute;
+    }
+    
+    .BRleafEdgeL {
+        border-style: solid none solid solid;
+        border-color: rgb(51, 51, 34);
+        border-width: 1px 0px 1px 1px;
+        background: transparent url(/bookviewer/static/BookReader/images/left_edges.png) repeat scroll 0% 0%;
+        position: absolute;
+    }
+    
+    .BRleafEdgeTmp {
+        border-style: solid none solid solid;
+        border-color: rgb(51, 51, 34);
+        border-width: 1px 0px 1px 1px;
+        background: transparent url(/bookviewer/static/BookReader/images/left_edges.png) repeat scroll 0% 0%;
+        position: absolute;
+    }
+    
+    #BRbookspine {
+        border: 1px solid rgb(68, 25, 17);
+        background-color: rgb(68, 25, 17);
+        position: absolute;
+    }
+    
+    /* search sidebar */
+    #BookReaderSearch {
+        border:1px solid black;
+        position:absolute;
+        background-color: #E6E4E1;
+        font-family: arial, sans-serif;
+    }
+    
+    #BookReaderSearchResults {
+        background-color: #FCFCFC;
+        top: 25px;
+        bottom: 0px;
+        overflow:auto;    
+        position: absolute;
+        left: 0px;
+        right: 0px;    
+        font-family: arial, san-serif;
+        font-size: 0.85em; 
+        padding: 2px;
+    }
+    
+    .BookReaderSearchHilite {
+        opacity: 0.20; 
+        filter: alpha(opacity = 20);
+        background-color: #00f;
+        position:absolute;
+    }
+    
+    .BRpageform {
+        display: inline; 
+    }
+    
+    .BRicon {
+        width: 24px;
+        height: 24px;
+        padding: 0px;
+        vertical-align: middle;
+        border: none;
+    }
+    
+    /* Absolute path used since the html might be generated at /stream/id or elsewhere */
+    
+    .BRicon.zoom_out { background: url(/bookviewer/static/img/icon_minus.gif) no-repeat; }
+    .BRicon.zoom_in { background: url(/bookviewer/static/img/icon_plus.gif) no-repeat; }
+    .BRicon.one_page_mode { background: url(/bookviewer/static/img/icon_article.gif) no-repeat; }
+    .BRicon.two_page_mode { background: url(/bookviewer/static/img/icon_buecher.gif) no-repeat; }
+    .BRicon.thumbnail_mode { background: url(/bookviewer/static/img/icon_kategorie.gif) no-repeat; }
+    .BRicon.embed { background: url(/bookviewer/static/img/embed_icon.png) no-repeat; }
+    .BRicon.print { background: url(/bookviewer/static/img/icon_druckansicht.gif) no-repeat; }
+    .BRicon.book_left { background: url(/bookviewer/static/img/pfeil_zurueck.gif) no-repeat; }
+    .BRicon.book_right { background: url(/bookviewer/static/img/pfeil_vor.gif) no-repeat; }
+    .BRicon.book_up { background: url(/bookviewer/static/img/pfeil_hoch.gif) no-repeat; }
+    .BRicon.book_down { background: url(/bookviewer/static/img/pfeil_runter.gif) no-repeat; }
+    .BRicon.book_leftmost { background: url(/bookviewer/static/img/pfeil_anfang.gif) no-repeat; }
+    .BRicon.book_rightmost { background: url(/bookviewer/static/img/pfeil_ende.gif) no-repeat; }
+    .BRicon.book_top { background: url(/bookviewer/static/img/pfeil_oben.gif) no-repeat; }
+    .BRicon.book_bottom { background: url(/bookviewer/static/img/pfeil_unten.gif) no-repeat; }
+    
+    
+    .BRicon.play { background: url(/bookviewer/static/img/icon_filme.gif) no-repeat; }
+    .BRicon.play {display: none;}
+    .BRicon.pause { background: url(/bookviewer/static/img/icon_pause.gif) no-repeat; }
+    
+    /* Icons with this class should have a 48x24 image which contains
+       the regular and hover images side-by-side */
+    /* 
+       .BRicon.rollover:hover { background-position: -24px 0; }
+    */
+     .BRicon.rollover:hover { background-position: 0px 0; }
+    
+    /* Special logic for the logo, which is an actual link */
+    a.BRicon {
+        display: block;
+        text-decoration: none;
+        border: none;
+        float: left;
+    }
+    
+    /* Do not display following buttons */
+    a.BRicon.logo {
+        display: none;
+    }
+    
+    .BRicon.embed {
+        display: none;
+    }
+    
+    /* footer stuff, from Rebecca's demo */
+    #BRfooter { 
+        position:absolute;
+        bottom: 1px;        /* ensure no vertical scroll bar in FF */
+        left: 0px;
+        /*width: 100%;*/    /* this causes horizontal scroll bar in FF */
+        right: 0px;
+        clear: both; 
+        color: #000000; 
+        padding: 0px 0px 0px 10px; 
+        background: #CCCCCC; 
+        height: 2em; 
+        line-height: 25px; 
+        vertical-align: middle; 
+        font-family: arial, sans-serif;
+        font-size: 12px;
+    }
+    
+    .BRlogotype {
+        float:left;
+        font-weight: bold; 
+        height: 25px; 
+        line-height: 25px; 
+        vertical-align: middle; 
+    }
+    
+    a.BRwhite               { color: #fff }
+    a.BRwhite:hover         { text-decoration: none; }
+    a.BRwhite:visited       { color: #fff }
+    
+    a.BRblack           { color: #4160a5}
+    a.BRblack:hover     { text-decoration: none; }
+    a.BRblack:visited   { color: #4160a5}
+    
+    .BRnavlinks {
+        float:right; 
+        padding: 0px 20px 0px 0px; 
+        margin: 0px; 
+        height: 25px; 
+        line-height: 25px; 
+        vertical-align: middle;
+    }
+    
+    /* thumnbail view, from Rebecca's demo */
+    .BRpdstatus-footer {
+        position:absolute;
+        height: 65px;
+        bottom: 25px;
+        width: 100%;
+        background-color: #f8f8f8;
+        border-top: 1px solid #ccc; 
+        text-align: right; 
+        padding: 0px 0px 0px 0px; 
+    }
+    
+    .BRwidgetlabel { 
+        color: #919070; 
+        padding: 8px 8px 4px 8px; 
+        font-family: verdana, arial, helvetica, sans-serif; 
+        font-size: 10px; 
+        float: left; 
+    }
+    
+    .BRfliparea {
+        background-image: url(/bookviewer/static/BookReader/images/transparent.png); # Required to capture mouse on IE
+    }
+    
+    .BRtwoPagePopUp {
+        border: 1px solid black;
+        padding: 2px 6px;
+        position: absolute;
+        font-family: sans-serif;
+        font-size: 14px;
+        background-color: rgb(255, 255, 238);
+        opacity: 0.85;
+    }
+    </style>
+</head>
+<body>
+
+
+    <!-- div id="content" -->
+    <div style="height: 100%">
+        <div id="BookReader" style="position: relative; height: 100%;">x</div>
+        <script type="text/javascript">
+            
+            // 
+            // This file shows the minimum you need to provide to BookReader to display a book
+            //
+            // Copyright(c)2008-2009 Internet Archive. Software license AGPL version 3.
+            
+            BookReader.prototype.prepareThumbnailViewDefault = BookReader.prototype.prepareThumbnailView;
+            BookReader.prototype.prepareOnePageViewDefault = BookReader.prototype.prepareOnePageView;
+            BookReader.prototype.prepareTwoPageViewDefault = BookReader.prototype.prepareTwoPageView;
+
+            // Create the BookReader object
+            br = new BookReader();
+            
+            br.prepareThumbnailView = function() {
+                 br.prepareThumbnailViewDefault();
+                 $('.BRicon.print').hide();
+            }
+            br.prepareOnePageView = function() {
+                 br.prepareOnePageViewDefault();
+                 $('.BRicon.print').show();
+            }
+            br.prepareTwoPageView = function() {
+                 br.prepareTwoPageViewDefault();
+                 $('.BRicon.print').show();
+            }
+
+            // Return the width of a given page.
+            br.getPageWidth = function(index) {
+                return this.pageW[index];
+            }
+            
+            // Return the height of a given page.
+            br.getPageHeight = function(index) {
+                return this.pageH[index];
+            }
+
+            br.setImageBaseURL('/bookviewer/static/BookReader/images/');
+            
+            br.computeReduceAndRotateString = function(url, reduce, rotate) {
+                if(reduce != null || rotate != null)
+                {
+                    url += '?';
+                    if(reduce != null)
+                    {
+                        url += 'reduce=' + reduce;
+                    }
+                    if(reduce != null && rotate != null)
+                    {
+                        url += '&';
+                    }
+                    if(rotate != null)
+                    {
+                        url += 'rotate=' + rotate;
+                    }
+                }
+                return url;
+            }
+
+            br.computePageString = function(index) {
+                var leafStr = '000';
+                var imgStr = (index+1).toString();
+                var page;
+                if(imgStr.length > 3)
+                {
+                    page = imgStr;
+                } else {
+                    var re = new RegExp("0{"+imgStr.length+"}$");
+                    page = leafStr.replace(re, imgStr);
+                }
+                return page;
+            }
+
+            // Get print URI from current indices and mode
+            br.getPrintURI = function() {
+                var indexToPrint;
+                if (this.constMode2up == this.mode) {
+                    indexToPrint = this.twoPage.currentIndexL;        
+                } else {
+                    indexToPrint = this.firstIndex; // $$$ the index in the middle of the viewport would make more sense
+                }
+                var page = br.computePageString(indexToPrint);
+                var printUri = '/bookviewer/ui/print/1263650953/page/' + page;
+                return printUri;
+            }
+            // Use new tab instead of new window, by default
+            br.printPage = function printPage() {
+                window.open(this.getPrintURI(), '_bookviewerCustomPrintPage', 'location=no,resizable=yes');
+            }
+
+            // We load the images from archive.org -- you can modify this function to retrieve images
+            // using a different URL structure
+            br.getPageURI = function(index, reduce, rotate) {
+                var page = br.computePageString(index);
+                var url = '/bookviewer/ui/view/1263650953/img/page/' + page + '/p.jpg';
+                return br.computeReduceAndRotateString(url, reduce, rotate);
+            }
+            
+            // Return which side, left or right, that a given page should be displayed on
+            br.getPageSide = function(index) {
+                if (0 == (index & 0x1)) {
+                    return 'R';
+                } else {
+                    return 'L';
+                }
+            }
+            
+            // This function returns the left and right indices for the user-visible
+            // spread that contains the given index.  The return values may be
+            // null if there is no facing page or the index is invalid.
+            br.getSpreadIndices = function(pindex) {   
+                var spreadIndices = [null, null]; 
+                if ('rl' == this.pageProgression) {
+                    // Right to Left
+                    if (this.getPageSide(pindex) == 'R') {
+                        spreadIndices[1] = pindex;
+                        spreadIndices[0] = pindex + 1;
+                    } else {
+                        // Given index was LHS
+                        spreadIndices[0] = pindex;
+                        spreadIndices[1] = pindex - 1;
+                    }
+                } else {
+                    // Left to right
+                    if (this.getPageSide(pindex) == 'L') {
+                        spreadIndices[0] = pindex;
+                        spreadIndices[1] = pindex + 1;
+                    } else {
+                        // Given index was RHS
+                        spreadIndices[1] = pindex;
+                        spreadIndices[0] = pindex - 1;
+                    }
+                }
+                
+                return spreadIndices;
+            }
+            
+            // For a given "accessible page index" return the page number in the book.
+            //
+            // For example, index 5 might correspond to "Page 1" if there is front matter such
+            // as a title page and table of contents.
+            br.getPageNum = function(index) {
+                return this.pageL[index];
+            }
+            br.pageL = ["1","2","3","4","5","6","7","8","9","10","11","12","13"];
+            
+            br.pageW = [2894,2479,2531,2527,2554,2553,2528,2553,2502,2570,2518,2894,2894];
+
+            br.pageH = [3945,3613,3649,3633,3633,3633,3633,3597,3633,3633,3596,3945,3945];
+            
+            
+            // Total number of leafs
+            br.numLeafs = 13;
+            
+            // Book title and the URL used for the book title link
+            br.bookTitle= 'TGL : technische Normen, Gütevorschriften und Lieferbedingungen : Deutsche Demokratische Republik. 1982-32565/01';
+            br.bookUrl  = 'https://d-nb.info/1263650953';
+            
+            // Let's go!
+            br.init();
+        </script>
+    </div>
+
+<!-- disabled because it was disabled for a while
+<div id="footer">
+    <div class="footer_banner"><img src="/bookviewer/static/img/banner_fuss.gif" alt="Schriftbanner mit Deutscher Nationalbibliothek Leipzig, Frankfurt am Main, Berlin" height="11" width="461" /></div>
+    <div class="footer_jump">Version 1.9.1 / 2025-01-22T13:54:30</div>           
+</div>
+-->
+
+</body>
+</html>

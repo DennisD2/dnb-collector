@@ -34,7 +34,7 @@ type Subfield struct {
 var counter = 0
 
 func searchTGLSRUDeepParse(normNumber string) []string {
-	var documentCollected []string = nil // make([]string, 1)
+	var documentCollection []string = nil
 	//u, err := url.Parse("https://services.dnb.de/sru/dnb?maximumRecords=5&operation=searchRetrieve&query=tit%3D%22TGL+32565%22&recordSchema=MARC21-xml&version=1.1")
 	u, err := url.Parse("https://services.dnb.de/sru/dnb")
 	if err != nil {
@@ -62,7 +62,6 @@ func searchTGLSRUDeepParse(normNumber string) []string {
 		fmt.Printf("❌ Error during querying: %v\n", err)
 		return nil
 	}
-
 	//req.Header.Set("User-Agent", "Mozilla/5.0 (X11; Linux x86_64; rv:120.0) Gecko/20100101 Firefox/120.0")
 	//req.Header.Set("Accept", "application/xml, text/xml, */*")
 
@@ -73,10 +72,10 @@ func searchTGLSRUDeepParse(normNumber string) []string {
 	}
 	defer resp.Body.Close()
 
-	fmt.Printf("%v\n", resp.StatusCode)
-	fmt.Printf("%v\n", resp.ContentLength)
+	fmt.Printf("response status code: %v\n", resp.StatusCode)
 	contentType := resp.Header.Get("Content-Type")
-	fmt.Printf("%v\n", contentType)
+	fmt.Printf("response content type: %v\n", contentType)
+	fmt.Printf("response content length: %v\n", resp.ContentLength)
 
 	if strings.Contains(contentType, "text/html") {
 		fmt.Println("❌ unexpected text/html response (expected: text/xml)")
@@ -153,14 +152,14 @@ func searchTGLSRUDeepParse(normNumber string) []string {
 			fmt.Println("  🔗 Links found:")
 			for _, link := range links {
 				fmt.Printf("    -> %s\n", link)
-				documentCollected = append(documentCollected, link)
+				documentCollection = append(documentCollection, link)
 			}
 		} else {
 			fmt.Println("  ⚠️ (No link inside this record)")
 		}
 		fmt.Println()
 	}
-	return documentCollected
+	return documentCollection
 }
 
 func parseXMLNamespaceInsensitive(data []byte) SRUResponse {

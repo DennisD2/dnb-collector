@@ -1,3 +1,5 @@
 32565/
 test-*/
 dnb-collector
+/.idea/
+/dnb-python/

@@ -50,7 +50,7 @@ I saw that there is an Open API, I could not refrain myself to
 try access with Go.
 
 So don't expect great code quality. It is just a quick hack to
-explore the API.
+explore the API. Code was partly developed with Googles Gemini AI support.
 
 ## OAI API
 * API Description (Python based) - https://mybinder.org/v2/gh/deutsche-nationalbibliothek/dnblab/HEAD?filepath=DNB_OAI_Tutorial.ipynb

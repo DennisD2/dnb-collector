@@ -68,7 +68,7 @@ func searchTGLSRUDeepParse(normNumber string) []string {
 
 	resp, err := client.Do(req)
 	if err != nil {
-		fmt.Printf("❌ Netzwerkfehler: %v\n", err)
+		fmt.Printf("❌ Network error: %v\n", err)
 		return nil
 	}
 	defer resp.Body.Close()
@@ -222,15 +222,15 @@ func parseXMLNamespaceInsensitive(data []byte) SRUResponse {
 	return response
 }
 
-// ProgressReader implementiert io.Reader und zählt die gelesenen Bytes,
-// um alle 1 MB einen Stern im Terminal auszugeben.
+// ProgressReader implements io.Reader and count bytes read
+// emits a star each 1 MByte data downloaded
 type ProgressReader struct {
 	Src       io.Reader
 	BytesRead int64
 	LastStar  int64
 }
 
-// Read fängt den normalen Lese-Stream ab und berechnet den Fortschritt.
+// Read calculates progress in read
 func (pr *ProgressReader) Read(p []byte) (n int, err error) {
 	n, err = pr.Src.Read(p)
 	pr.BytesRead += int64(n)
@@ -238,7 +238,7 @@ func (pr *ProgressReader) Read(p []byte) (n int, err error) {
 	// 1 MByte = 1024 * 1024 Bytes
 	const megaByte = 1024 * 1024
 
-	// Berechnen, wie viele Sterne seit dem letzten Mal gedruckt werden müssen
+	// number of new stars
 	currentMilestone := pr.BytesRead / megaByte
 	lastMilestone := pr.LastStar / megaByte
 
@@ -252,29 +252,29 @@ func (pr *ProgressReader) Read(p []byte) (n int, err error) {
 }
 
 func downloadZIP(documentURL string, dir string) (string, error) {
-	// HTTP-Client definieren, der Redirects automatisch folgt
+	// HTTP-Client
 	client := &http.Client{
 		Timeout: 360 * time.Second,
 	}
 
 	req, err := http.NewRequest("GET", documentURL, nil)
 	if err != nil {
-		return "", fmt.Errorf("Fehler beim Erstellen des Requests: %w", err)
+		return "", fmt.Errorf("Error setting up request (1): %w", err)
 	}
 	req.Header.Set("User-Agent", "Mozilla/5.0 (X11; Linux x86_64; rv:120.0)")
 
 	resp, err := client.Do(req)
 	if err != nil {
-		return "", fmt.Errorf("Netzwerkfehler beim Aufruf der Dokumenten-URL: %w", err)
+		return "", fmt.Errorf("Network error when calling URL: %w", err)
 	}
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		return "", fmt.Errorf("unerwarteter HTTP-Status: %s", resp.Status)
+		return "", fmt.Errorf("Unexpected HTTP state code: %s", resp.Status)
 	}
 
+	// Try to read proposed filename from response
 	fileName := fmt.Sprintf("download-noname-%v.txt", counter)
-
 	contentDisposition := resp.Header.Get("Content-Disposition")
 	if contentDisposition != "" {
 		_, params, err := mime.ParseMediaType(contentDisposition)
@@ -288,19 +288,19 @@ func downloadZIP(documentURL string, dir string) (string, error) {
 	}
 	fmt.Printf("Downloading file: %v\n", fileName)
 
-	// Finale URL nach den Redirects auslesen, um die Bookviewer-ID zu extrahieren
+	// get URL for download step
 	finalURL := resp.Request.URL.String()
 	//fmt.Printf("  finalURL: %s\n", finalURL)
 
 	req, err = http.NewRequest("GET", finalURL, nil)
 	if err != nil {
-		return "", fmt.Errorf("Fehler beim Erstellen des Requests: %w", err)
+		return "", fmt.Errorf("Error setting up request (2): %w", err)
 	}
 	req.Header.Set("User-Agent", "Mozilla/5.0 (X11; Linux x86_64; rv:120.0)")
 
 	resp, err = client.Do(req)
 	if err != nil {
-		return "", fmt.Errorf("Netzwerkfehler beim Aufruf der Dokumenten-URL: %w", err)
+		return "", fmt.Errorf("Network error when calling URL: %w", err)
 	}
 	defer resp.Body.Close()
 
@@ -315,6 +315,7 @@ func downloadZIP(documentURL string, dir string) (string, error) {
 	}
 	fmt.Printf("\nRaw bytes downloaded: %v\n", len(rawBytes))
 
+	// Write file
 	fileLocation := fmt.Sprintf("%s/%s", dir, fileName)
 	err = os.WriteFile(fileLocation, rawBytes, 0644)
 	if err != nil {
@@ -325,13 +326,15 @@ func downloadZIP(documentURL string, dir string) (string, error) {
 	counter++
 
 	return fileName, nil
-
 }
 
 func main() {
+	// Example document ID. We want TGL 32565.
 	tglId := "32565"
+	// Download artifact tree for document
 	documents := searchTGLSRUDeepParse(tglId)
 	os.Mkdir(tglId, 0755)
+	// Download all artifacts
 	for _, document := range documents {
 		fmt.Printf("Processing: %s\n", document)
 		zipFileName, err := downloadZIP(document, tglId)

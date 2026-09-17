@@ -57,5 +57,6 @@ explore the API. Code was partly developed with Googles Gemini AI support.
 * API Description (Python based) - https://mybinder.org/v2/gh/deutsche-nationalbibliothek/dnblab/HEAD?filepath=DNB_OAI_Tutorial.ipynb
 
 ## Data sets
-* Mehr als 18.000 Technische Normen, Gütevorschriften und Lieferbedingungen (TGL) der DDR von 1949 bis 1989. https://www.dnb.de/DE/Professionell/Services/WissenschaftundForschung/DNBLab/DNBLabDatensets/ThematischeSammlungen/technischeNormen.html
+* Available data sets - https://www.dnb.de/EN/Professionell/Services/WissenschaftundForschung/DNBLab/dnblabFreieDigitaleObjektsammlung.html?nn=849626
+* Mehr als 18.000 "Technische Normen, Gütevorschriften und Lieferbedingungen" (TGL) der DDR von 1949 bis 1989. https://www.dnb.de/DE/Professionell/Services/WissenschaftundForschung/DNBLab/DNBLabDatensets/ThematischeSammlungen/technischeNormen.html
 * Online browser-driven access to data sets - https://portal.dnb.de/opac/simpleSearch?query=cod%3D2d010&cqlMode=true

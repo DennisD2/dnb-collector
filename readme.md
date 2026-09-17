@@ -10,7 +10,8 @@ can be accessed using some arbitrary programming language.
 
 ## What does this repository contain?
 This repository contains code to access one of these collections,
-the TGL collection from GDR, which was like DIN for BRD.
+the TGL (Technische Normen, Gütevorschriften und Lieferbedingungen) 
+collection from GDR, which was like DIN for BRD.
 
 It is only example code, that can retrieve a single TGL document
 artifact tree. 
@@ -47,7 +48,7 @@ So, downloading document 32565 results in the following structure.
 I did this code only for fun. I needed a single document from this
 collection, and got it using the DNBs own document viewer. But when
 I saw that there is an Open API, I could not refrain myself to
-try access with Go.
+try access with Go. 
 
 So don't expect great code quality. It is just a quick hack to
 explore the API. Code was partly developed with Googles Gemini AI support.
@@ -57,4 +58,4 @@ explore the API. Code was partly developed with Googles Gemini AI support.
 
 ## Data sets
 * Mehr als 18.000 Technische Normen, Gütevorschriften und Lieferbedingungen (TGL) der DDR von 1949 bis 1989. https://www.dnb.de/DE/Professionell/Services/WissenschaftundForschung/DNBLab/DNBLabDatensets/ThematischeSammlungen/technischeNormen.html
-* Online browser-driven access to data set - https://portal.dnb.de/opac/simpleSearch?query=cod%3D2d010&cqlMode=true
+* Online browser-driven access to data sets - https://portal.dnb.de/opac/simpleSearch?query=cod%3D2d010&cqlMode=true

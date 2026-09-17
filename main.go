@@ -33,8 +33,13 @@ type Subfield struct {
 
 var counter = 0
 
-func searchTGLSRUDeepParse(normNumber string) []string {
-	var documentCollection []string = nil
+type DownloadableDocument struct {
+	title string
+	url   string
+}
+
+func searchTGLSRUDeepParse(normNumber string) []DownloadableDocument {
+	var documentCollection []DownloadableDocument = nil
 	//u, err := url.Parse("https://services.dnb.de/sru/dnb?maximumRecords=5&operation=searchRetrieve&query=tit%3D%22TGL+32565%22&recordSchema=MARC21-xml&version=1.1")
 	u, err := url.Parse("https://services.dnb.de/sru/dnb")
 	if err != nil {
@@ -155,7 +160,10 @@ func searchTGLSRUDeepParse(normNumber string) []string {
 			fmt.Println("  🔗 Links found:")
 			for _, link := range links {
 				fmt.Printf("    -> %s\n", link)
-				documentCollection = append(documentCollection, link)
+				newDownloadable := DownloadableDocument{}
+				newDownloadable.title = title
+				newDownloadable.url = link
+				documentCollection = append(documentCollection, newDownloadable)
 			}
 		} else {
 			fmt.Println("  ⚠️ (No link inside this record)")
@@ -253,13 +261,13 @@ func (pr *ProgressReader) Read(p []byte) (n int, err error) {
 	return n, err
 }
 
-func downloadZIP(documentURL string, dir string) (string, error) {
+func downloadZIP(downloadable DownloadableDocument, dir string) (string, error) {
 	// HTTP-Client
 	client := &http.Client{
 		Timeout: 360 * time.Second,
 	}
 
-	req, err := http.NewRequest("GET", documentURL, nil)
+	req, err := http.NewRequest("GET", downloadable.url, nil)
 	if err != nil {
 		return "", fmt.Errorf("Error setting up request (1): %w", err)
 	}
@@ -338,7 +346,7 @@ func main() {
 	os.Mkdir(tglId, 0755)
 	// Download all artifacts
 	for _, document := range documents {
-		fmt.Printf("Processing: %s\n", document)
+		fmt.Printf("Processing: \"%v\", Title =\"%v\"\n", document.url, document.title)
 		artifactFileName, err := downloadZIP(document, tglId)
 		if err != nil {
 			fmt.Println(err)

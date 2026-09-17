@@ -126,7 +126,10 @@ func searchTGLSRUDeepParse(normNumber string) []string {
 				}
 			case "856":
 				if uLink, ok := subfieldMap["u"]; ok {
-					links = append(links, uLink)
+					if strings.Contains(uLink, "d-nb.info") {
+						// add only links that can be resolved
+						links = append(links, uLink)
+					}
 				}
 			case "260", "264":
 				if year, ok := subfieldMap["c"]; ok {

@@ -288,10 +288,10 @@ func downloadZIP(documentURL string, dir string) (string, error) {
 	fmt.Printf("Downloading file: %v\n", fileName)
 
 	// get URL for download step
-	finalURL := resp.Request.URL.String()
+	artifactURL := resp.Request.URL.String()
 	//fmt.Printf("  finalURL: %s\n", finalURL)
 
-	req, err = http.NewRequest("GET", finalURL, nil)
+	req, err = http.NewRequest("GET", artifactURL, nil)
 	if err != nil {
 		return "", fmt.Errorf("Error setting up request (2): %w", err)
 	}
@@ -307,10 +307,10 @@ func downloadZIP(documentURL string, dir string) (string, error) {
 		Src: resp.Body,
 	}
 
-	// read in flat XML bytes
+	// read in artifact bytes
 	rawBytes, err := io.ReadAll(progressReader)
 	if err != nil {
-		return "", fmt.Errorf("Error reading in raw bytes of query result: %v", err)
+		return "", fmt.Errorf("Error reading in raw bytes of artifact: %v", err)
 	}
 	fmt.Printf("\nRaw bytes downloaded: %v\n", len(rawBytes))
 
@@ -336,11 +336,11 @@ func main() {
 	// Download all artifacts
 	for _, document := range documents {
 		fmt.Printf("Processing: %s\n", document)
-		zipFileName, err := downloadZIP(document, tglId)
+		artifactFileName, err := downloadZIP(document, tglId)
 		if err != nil {
 			fmt.Println(err)
 			continue
 		}
-		fmt.Printf("Processed: %s\n", zipFileName)
+		fmt.Printf("Processed: %s\n", artifactFileName)
 	}
 }

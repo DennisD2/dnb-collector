@@ -21,6 +21,12 @@ type AppInfo struct {
 	debugLevel   int
 	downloadFlag bool
 	tglId        string
+	nameCounter  int
+}
+
+type DownloadableDocument struct {
+	title string
+	url   string
 }
 
 type SRUResponse struct {
@@ -39,13 +45,6 @@ type Datafield struct {
 type Subfield struct {
 	Code string `xml:"code,attr"`
 	Text string `xml:",chardata"`
-}
-
-var counter = 0
-
-type DownloadableDocument struct {
-	title string
-	url   string
 }
 
 func searchTGLSRUDeepParse(appInfo AppInfo, normNumber string) []DownloadableDocument {
@@ -280,7 +279,6 @@ func (pr *ProgressReader) Read(p []byte) (n int, err error) {
 }
 
 func downloadZIP(appInfo AppInfo, downloadable DownloadableDocument, fileNamePrefix string) (string, error) {
-	// HTTP-Client
 	client := &http.Client{
 		Timeout: 360 * time.Second,
 	}
@@ -302,7 +300,8 @@ func downloadZIP(appInfo AppInfo, downloadable DownloadableDocument, fileNamePre
 	}
 
 	// Try to read proposed filename from response
-	fileName := fmt.Sprintf("download-noname-%v.txt", counter)
+	fileName := fmt.Sprintf("download-noname-%v.txt", appInfo.nameCounter)
+	appInfo.nameCounter++
 	contentDisposition := resp.Header.Get("Content-Disposition")
 	if contentDisposition != "" {
 		_, params, err := mime.ParseMediaType(contentDisposition)
@@ -318,7 +317,6 @@ func downloadZIP(appInfo AppInfo, downloadable DownloadableDocument, fileNamePre
 
 	// get URL for download step
 	artifactURL := resp.Request.URL.String()
-	//fmt.Printf("  finalURL: %s\n", finalURL)
 
 	req, err = http.NewRequest("GET", artifactURL, nil)
 	if err != nil {
@@ -352,15 +350,18 @@ func downloadZIP(appInfo AppInfo, downloadable DownloadableDocument, fileNamePre
 		return "", err
 	}
 	fmt.Printf("💾 File %v successfully downloaded and stored\n", fileLocation)
-	counter++
 
 	return fileName, nil
 }
 
 func sanitizeTitle(rawTitle string) string {
-	// norm.NFC.String() konvertiert den zerlegten NFD-String
-	// in den standardisierten, sauber komponierten NFC-String.
 	return norm.NFC.String(rawTitle)
+}
+
+func sanitizeTitle2(title string) string {
+	t := strings.ReplaceAll(sanitizeTitle(title), " ", "_")
+	t = strings.ReplaceAll(t, "/", "-")
+	return t
 }
 
 func main() {
@@ -385,6 +386,7 @@ func main() {
 		debugLevel:   *debugPtr,
 		downloadFlag: *downloadPtr,
 		tglId:        *tglPtr,
+		nameCounter:  0,
 	}
 
 	// Download artifact tree for document
@@ -404,11 +406,4 @@ func main() {
 		}
 		fmt.Printf("Processed: %s\n", document.url)
 	}
-}
-
-func sanitizeTitle2(title string) string {
-	t := strings.ReplaceAll(sanitizeTitle(title), " ", "_")
-	t = strings.ReplaceAll(t, "/", "-")
-	//fmt.Println(t)
-	return t
 }

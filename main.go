@@ -279,7 +279,7 @@ func (pr *ProgressReader) Read(p []byte) (n int, err error) {
 	return n, err
 }
 
-func downloadZIP(appInfo AppInfo, downloadable DownloadableDocument) (string, error) {
+func downloadZIP(appInfo AppInfo, downloadable DownloadableDocument, fileNamePrefix string) (string, error) {
 	// HTTP-Client
 	client := &http.Client{
 		Timeout: 360 * time.Second,
@@ -344,12 +344,13 @@ func downloadZIP(appInfo AppInfo, downloadable DownloadableDocument) (string, er
 	fmt.Printf("\nRaw bytes downloaded: %v\n", len(rawBytes))
 
 	// Write file
-	fileLocation := fmt.Sprintf("%s/%s", appInfo.tglId, fileName)
-	err = os.WriteFile(fileLocation, rawBytes, 0644)
+	fileLocation := fmt.Sprintf("%s/%s_%s", appInfo.tglId, fileNamePrefix, fileName)
+	fmt.Printf("X Downloading file: %v\n", fileLocation)
+	/*err = os.WriteFile(fileLocation, rawBytes, 0644)
 	if err != nil {
 		fmt.Printf("❌ Error during writing file: %v\n", err)
 		return "", err
-	}
+	}*/
 	fmt.Printf("💾 File %v successfully downloaded and stored\n", fileLocation)
 	counter++
 
@@ -392,8 +393,9 @@ func main() {
 	// Download all artifacts
 	for _, document := range documents {
 		fmt.Printf("Processing: \"%v\", Title =\"%v\"\n", document.url, sanitizeTitle(document.title))
+		tpart := sanitizeTitle2(document.title)
 		if appInfo.downloadFlag {
-			artifactFileName, err := downloadZIP(appInfo, document)
+			artifactFileName, err := downloadZIP(appInfo, document, tpart)
 			if err != nil {
 				fmt.Println(err)
 				continue
@@ -402,4 +404,11 @@ func main() {
 		}
 		fmt.Printf("Processed: %s\n", document.url)
 	}
+}
+
+func sanitizeTitle2(title string) string {
+	t := strings.ReplaceAll(sanitizeTitle(title), " ", "_")
+	t = strings.ReplaceAll(t, "/", "-")
+	//fmt.Println(t)
+	return t
 }

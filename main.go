@@ -371,7 +371,7 @@ func main() {
 	debugPtr := flag.Int("debug", 0,
 		"Debug level")
 	downloadPtr := flag.Bool("download", false,
-		"Baudrate")
+		"true if files should be downloaded")
 	tglPtr := flag.String("id", "32565",
 		"TGL document id")
 	flag.Parse()
@@ -379,7 +379,7 @@ func main() {
 	fmt.Printf("--dry-run: %t\n", *dryRunPtr)
 	fmt.Printf("--debug: %d\n", *debugPtr)
 	fmt.Printf("--download: %t\n", *downloadPtr)
-	fmt.Printf("--id: %v\n", *tglPtr)
+	fmt.Printf("--id: %s\n", *tglPtr)
 
 	appInfo := AppInfo{
 		dryRun:       *dryRunPtr,

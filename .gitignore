@@ -1,5 +1,6 @@
-32565/
-test-*/
-dnb-collector
 /.idea/
 /dnb-python/
+test-*/
+dnb-collector
+# downloaded document directories
+[0-9]*/

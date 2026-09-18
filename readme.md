@@ -55,9 +55,24 @@ go build .
 ## How to run
 ```shell
 go run . <command line arguments>
+
+# Example arguments
+./dnb-collector --download=true --id=34888 --dry-run=false --debug=2
 ```
 
-A complete session looks like this (also showing available command line options):
+Interesting Ids:
+* 35199: Returns data sheet of PNP transistor KT 203
+* 35200: Returns data sheet of PNP transistor KT 209 
+* 29107: Monolithischer bipolarer NF-Verstärker-Schaltkreis A 211 D
+* 34169: Monolithisch bipolare NAND-Schaltkreise K 1 LB 553, K1 LB 554, K 1 LB 551, K 1 LB 552 und K1 LB 556
+* 0-11: Whitworth-Gewinde von ¼ bis 6″ Gewinde-Nenndurchmesser. Nennmaße, Lehrenangaben
+* 0-13: Metrisches Gewinde
+* 0-14: Metrisches Gewinde
+* 0-933: Sechskantschrauben. Gewinde annähernd bis Kopf M2,5 bis M24. Genauigkeitsklassen A und B
+* ...
+
+
+A complete session looks like this (also showing available command line arguments):
 
 ```shell
 go run . --download true

@@ -345,12 +345,12 @@ func downloadZIP(appInfo AppInfo, downloadable DownloadableDocument, fileNamePre
 
 	// Write file
 	fileLocation := fmt.Sprintf("%s/%s_%s", appInfo.tglId, fileNamePrefix, fileName)
-	fmt.Printf("X Downloading file: %v\n", fileLocation)
-	/*err = os.WriteFile(fileLocation, rawBytes, 0644)
+	fmt.Printf("Generated filename of local file: %v\n", fileLocation)
+	err = os.WriteFile(fileLocation, rawBytes, 0644)
 	if err != nil {
 		fmt.Printf("❌ Error during writing file: %v\n", err)
 		return "", err
-	}*/
+	}
 	fmt.Printf("💾 File %v successfully downloaded and stored\n", fileLocation)
 	counter++
 

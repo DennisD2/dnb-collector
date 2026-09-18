@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/xml"
+	"flag"
 	"fmt"
 	"io"
 	"mime"
@@ -14,6 +15,13 @@ import (
 
 	"golang.org/x/text/unicode/norm"
 )
+
+type AppInfo struct {
+	dryRun       bool
+	debugLevel   int
+	downloadFlag bool
+	//tglId        string
+}
 
 type SRUResponse struct {
 	Records []Record `xml:"//record"`
@@ -40,7 +48,7 @@ type DownloadableDocument struct {
 	url   string
 }
 
-func searchTGLSRUDeepParse(normNumber string) []DownloadableDocument {
+func searchTGLSRUDeepParse(appInfo AppInfo, normNumber string) []DownloadableDocument {
 	var documentCollection []DownloadableDocument = nil
 	//u, err := url.Parse("https://services.dnb.de/sru/dnb?maximumRecords=5&operation=searchRetrieve&query=tit%3D%22TGL+32565%22&recordSchema=MARC21-xml&version=1.1")
 	u, err := url.Parse("https://services.dnb.de/sru/dnb")
@@ -90,13 +98,16 @@ func searchTGLSRUDeepParse(normNumber string) []DownloadableDocument {
 	}
 
 	// read in flat XML bytes
+	fmt.Println("Reading XML as raw bytes...")
 	rawBytes, err := io.ReadAll(resp.Body)
 	if err != nil {
 		fmt.Printf("❌ Error reading in raw bytes of query result: %v\n", err)
 		return nil
 	}
-	fmt.Printf("Raw bytes: %v\n", string(rawBytes))
-
+	fmt.Printf("... raw bytes read: %v\n", len(rawBytes))
+	if appInfo.debugLevel > 1 {
+		fmt.Printf("Raw bytes: %v\n", string(rawBytes))
+	}
 	sruData := parseXMLNamespaceInsensitive(rawBytes)
 
 	if len(sruData.Records) == 0 {
@@ -133,10 +144,7 @@ func searchTGLSRUDeepParse(normNumber string) []DownloadableDocument {
 				}
 			case "856":
 				if uLink, ok := subfieldMap["u"]; ok {
-					if strings.Contains(uLink, "d-nb.info") {
-						// add only links that can be resolved
-						links = append(links, uLink)
-					}
+					links = append(links, uLink)
 				}
 			case "260", "264":
 				if year, ok := subfieldMap["c"]; ok {
@@ -161,11 +169,19 @@ func searchTGLSRUDeepParse(normNumber string) []DownloadableDocument {
 		if len(links) > 0 {
 			fmt.Println("  🔗 Links found:")
 			for _, link := range links {
-				fmt.Printf("    -> %s\n", link)
-				newDownloadable := DownloadableDocument{}
-				newDownloadable.title = title
-				newDownloadable.url = link
-				documentCollection = append(documentCollection, newDownloadable)
+				downloadableStr := "(not downloadable)"
+				downloadable := false
+				if strings.Contains(link, "d-nb.info") {
+					downloadableStr = "(will be downloaded)"
+					downloadable = true
+				}
+				fmt.Printf("    -> %s %s\n", link, downloadableStr)
+				if downloadable {
+					newDownloadable := DownloadableDocument{}
+					newDownloadable.title = title
+					newDownloadable.url = link
+					documentCollection = append(documentCollection, newDownloadable)
+				}
 			}
 		} else {
 			fmt.Println("  ⚠️ (No link inside this record)")
@@ -347,19 +363,43 @@ func sanitizeTitle(rawTitle string) string {
 }
 
 func main() {
-	// Example document ID. We want TGL 32565.
-	tglId := "32565"
+	fmt.Println("DNB collector")
+	dryRunPtr := flag.Bool("dry-run", false,
+		"Dry run mode")
+	debugPtr := flag.Int("debug", 0,
+		"Debug level")
+	downloadPtr := flag.Bool("download", false,
+		"Baudrate")
+	tglPtr := flag.String("id", "32565",
+		"TGL document id")
+	flag.Parse()
+
+	fmt.Printf("--dry-run: %t\n", *dryRunPtr)
+	fmt.Printf("--debug: %d\n", *debugPtr)
+	fmt.Printf("--download: %t\n", *downloadPtr)
+	fmt.Printf("--id: %v\n", *tglPtr)
+
+	appInfo := AppInfo{
+		dryRun:       *dryRunPtr,
+		debugLevel:   *debugPtr,
+		downloadFlag: *downloadPtr,
+		//tglId:        *tglPtr,
+	}
+
 	// Download artifact tree for document
-	documents := searchTGLSRUDeepParse(tglId)
-	os.Mkdir(tglId, 0755)
+	documents := searchTGLSRUDeepParse(appInfo, *tglPtr)
+	os.Mkdir(*tglPtr, 0755)
 	// Download all artifacts
 	for _, document := range documents {
 		fmt.Printf("Processing: \"%v\", Title =\"%v\"\n", document.url, sanitizeTitle(document.title))
-		artifactFileName, err := downloadZIP(document, tglId)
-		if err != nil {
-			fmt.Println(err)
-			continue
+		if appInfo.downloadFlag {
+			artifactFileName, err := downloadZIP(document, *tglPtr)
+			if err != nil {
+				fmt.Println(err)
+				continue
+			}
+			fmt.Printf("Downloading file: %v\n", artifactFileName)
 		}
-		fmt.Printf("Processed: %s\n", artifactFileName)
+		fmt.Printf("Processed: %s\n", document.url)
 	}
 }

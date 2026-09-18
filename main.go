@@ -398,7 +398,7 @@ func main() {
 				fmt.Println(err)
 				continue
 			}
-			fmt.Printf("Downloading file: %v\n", artifactFileName)
+			fmt.Printf("Downloaded file: %v\n", artifactFileName)
 		}
 		fmt.Printf("Processed: %s\n", document.url)
 	}

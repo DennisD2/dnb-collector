@@ -22,8 +22,6 @@ are metadata, OCR data, and TIFF scans of the original documents.
 A set, which is like a version of a document, is downloaded in a ZIP
 file and contains the mentioned artifacts for this version.
 
-The ZIP file name is the one defined by DNB, and looks like *1253650947X.zip*.
-
 Next image shows content of some of these ZIP files. Per page,
 there is a TIFF image. Besides that, there is also OCR information
 and some metadata.

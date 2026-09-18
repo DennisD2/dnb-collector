@@ -20,7 +20,7 @@ type AppInfo struct {
 	dryRun       bool
 	debugLevel   int
 	downloadFlag bool
-	//tglId        string
+	tglId        string
 }
 
 type SRUResponse struct {
@@ -279,7 +279,7 @@ func (pr *ProgressReader) Read(p []byte) (n int, err error) {
 	return n, err
 }
 
-func downloadZIP(downloadable DownloadableDocument, dir string) (string, error) {
+func downloadZIP(appInfo AppInfo, downloadable DownloadableDocument) (string, error) {
 	// HTTP-Client
 	client := &http.Client{
 		Timeout: 360 * time.Second,
@@ -344,7 +344,7 @@ func downloadZIP(downloadable DownloadableDocument, dir string) (string, error) 
 	fmt.Printf("\nRaw bytes downloaded: %v\n", len(rawBytes))
 
 	// Write file
-	fileLocation := fmt.Sprintf("%s/%s", dir, fileName)
+	fileLocation := fmt.Sprintf("%s/%s", appInfo.tglId, fileName)
 	err = os.WriteFile(fileLocation, rawBytes, 0644)
 	if err != nil {
 		fmt.Printf("❌ Error during writing file: %v\n", err)
@@ -383,7 +383,7 @@ func main() {
 		dryRun:       *dryRunPtr,
 		debugLevel:   *debugPtr,
 		downloadFlag: *downloadPtr,
-		//tglId:        *tglPtr,
+		tglId:        *tglPtr,
 	}
 
 	// Download artifact tree for document
@@ -393,7 +393,7 @@ func main() {
 	for _, document := range documents {
 		fmt.Printf("Processing: \"%v\", Title =\"%v\"\n", document.url, sanitizeTitle(document.title))
 		if appInfo.downloadFlag {
-			artifactFileName, err := downloadZIP(document, *tglPtr)
+			artifactFileName, err := downloadZIP(appInfo, document)
 			if err != nil {
 				fmt.Println(err)
 				continue
